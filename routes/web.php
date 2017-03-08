@@ -15,7 +15,8 @@ Route::get('/',function(){
     return 'caralha';}
 
 );
-Route::get('/painel', function(){
-    return 'caralha';}
+Route::get('/painel/produtos/tests','Painel\ProductController@add');
+Route::get('/painel/produtos/update','Painel\ProductController@update');
+Route::get('/painel/produtos/delete','Painel\ProductController@delete');
 
-    );
+Route::resource('/painel/produtos','Painel\ProductController');

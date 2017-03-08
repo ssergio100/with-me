@@ -1,43 +1,35 @@
-
-
 @extends('painel.templates.template')
 
 @section('content')
-    <h1 class = "title-pg">Listagem de produtos</h1>
-    <a href="{{route('produtos.create')}}" class="btn btn-default">Cadastrar Novo</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th width="100px">Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($products as $product)
-        <tr>
-            <td>{{$product->name}}</td>
-            <td>{{$product->description}}</td>
-            <td>
-            <a href="">
-           <span class="glyphicon glyphicon-pencil edit" aria-hidden="true"></span>
-            </a><a href="">
-            <span class="glyphicon glyphicon-trash delete" aria-hidden="true"></span>
-            </a>
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
+    <h1 class="title-pg">Cadastro de produto</h1>
 
-    </table>
+    <form class="form" method="post" action="{{route('produtos.store')}}">
 
-  {{--  <html>
-    <header>
-        <title> {{ $title or 'Painel' }}</title>
-    </header>
-    <body>
-    @yield('content');
-    </body>
-    </html>--}}
+    {!!csrf_field ()!!}
+
+       <div class="form-group">
+        <input class="form-control" type="text" name ="name" placeholder="*nome">
+       </div>
+        <div class="form-group">
+        <label>
+        <input type="checkbox" name="active" value="1" placeholder="*nome">
+            Ativo
+        </label>
+        </div>
+        <div class="form-group">
+        <input type="text" class="form-control" name="number" placeholder="*numero">
+        </div>
+        <div class="form-group">
+        <select name="category">
+            @foreach($categorys as $category)
+                <option>{{ $category}}</option>
+            @endforeach
+        </select>
+        </div>
+        <div class="form-group">
+        <textarea name="description" class="form-control" placeholder="*descrição"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Cadastrar">
+    </form>
 
 @endsection
